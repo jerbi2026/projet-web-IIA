@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – Escales Tunisiennes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-arabic">&#x2766;</span>
+      <span class="logo-text">Escales <em>Tunisiennes</em></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">Notre Agence</a></li>
+      <li><a href="products.html">Nos Voyages</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li><a href="order.html">Réserver</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="testimonials.html" >Avis</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="order.html" class="nav-cta">Réserver maintenant</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="background-image: url('src/fs9cuqwn1dnae8w67g74.webp')">
+    <div class="page-hero-content">
+      <span class="section-label">Nous sommes à votre écoute</span>
+      <h1>Contactez <em>notre équipe</em></h1>
+    </div>
+  </div>
+
+  <!-- CONTACT LAYOUT -->
+  <div class="contact-layout">
+
+    <!-- INFORMATIONS -->
+    <div class="contact-info">
+      <p class="section-label">Nos coordonnées</p>
+      <h2>Parlons de votre <em>voyage</em></h2>
+      <p>Notre équipe est disponible du lundi au samedi pour répondre à toutes vos questions et vous aider à construire le voyage de vos rêves en Tunisie.</p>
+
+      <div class="info-block">
+        <div class="info-icon">📍</div>
+        <div>
+          <h4>Adresse</h4>
+          <p>12 Avenue Habib Bourguiba, Tunis 1000<br/>Tunisie</p>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-icon">📞</div>
+        <div>
+          <h4>Téléphone</h4>
+          <p>+216 71 000 000<br/>+216 71 000 001 (WhatsApp)</p>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-icon">✉️</div>
+        <div>
+          <h4>Email</h4>
+          <p>contact@escalestunisiennes.tn<br/>reservations@escalestunisiennes.tn</p>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-icon">⏰</div>
+        <div>
+          <h4>Horaires d'ouverture</h4>
+          <p>Lundi – Vendredi : 9h00 – 18h00<br/>Samedi : 9h00 – 13h00</p>
+        </div>
+      </div>
+
+      <!-- Tableau des délais de réponse -->
+      <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:600; margin:2rem 0 1rem;">Délais de réponse estimés</h3>
+      <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+        <thead>
+          <tr style="background:var(--sapphire-dark); color:var(--white);">
+            <th style="padding:0.7rem 1rem; text-align:left;">Canal</th>
+            <th style="padding:0.7rem 1rem; text-align:left;">Délai</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--cream);">
+            <td style="padding:0.6rem 1rem; border-bottom:1px solid var(--sand);">Formulaire en ligne</td>
+            <td style="padding:0.6rem 1rem; border-bottom:1px solid var(--sand);">Sous 24h</td>
+          </tr>
+          <tr>
+            <td style="padding:0.6rem 1rem; border-bottom:1px solid var(--sand);">Email direct</td>
+            <td style="padding:0.6rem 1rem; border-bottom:1px solid var(--sand);">Sous 24h</td>
+          </tr>
+          <tr style="background:var(--cream);">
+            <td style="padding:0.6rem 1rem; border-bottom:1px solid var(--sand);">Téléphone</td>
+            <td style="padding:0.6rem 1rem; border-bottom:1px solid var(--sand);">Immédiat (horaires)</td>
+          </tr>
+          <tr>
+            <td style="padding:0.6rem 1rem;">WhatsApp</td>
+            <td style="padding:0.6rem 1rem;">Sous 2h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FORMULAIRE DE CONTACT -->
+    <div class="contact-form-wrap">
+      <h3>Envoyez-nous un <em>message</em></h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom *</label>
+          <input type="text" id="c-prenom" placeholder="Votre prénom" required />
+        </div>
+        <div class="form-group">
+          <label>Nom *</label>
+          <input type="text" id="c-nom" placeholder="Votre nom" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="c-email" placeholder="votre@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" id="c-tel" placeholder="+216 xx xxx xxx" />
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Sujet de votre demande *</label>
+          <select id="c-sujet" required>
+            <option value="">— Choisissez un sujet —</option>
+            <option value="renseignement">Demande de renseignement</option>
+            <option value="devis">Demande de devis personnalisé</option>
+            <option value="reservation">Question sur une réservation</option>
+            <option value="reclamation">Réclamation</option>
+            <option value="partenariat">Proposition de partenariat</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Comment préférez-vous être contacté(e) ?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="contact-pref" value="email" checked /> Email</label>
+            <label><input type="radio" name="contact-pref" value="telephone" /> Téléphone</label>
+            <label><input type="radio" name="contact-pref" value="whatsapp" /> WhatsApp</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div class="form-group">
+          <label>Message *</label>
+          <textarea id="c-message" placeholder="Décrivez votre demande en détail…" required></textarea>
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="c-newsletter" />
+        <label for="c-newsletter">Je souhaite recevoir les actualités et offres spéciales d'Escales Tunisiennes par email.</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="c-rgpd" required />
+        <label for="c-rgpd">J'accepte que mes données soient utilisées pour traiter ma demande. *</label>
+      </div>
+
+      <div class="form-submit">
+        <button class="btn-next" onclick="sendContact()">Envoyer le message →</button>
+      </div>
+      <div id="contact-success" style="display:none; margin-top:1rem; padding:1rem; background:#e8f5e9; border-radius:var(--radius); color:#2e7d32; font-size:0.88rem;">
+        ✅ Votre message a bien été envoyé ! Nous vous répondrons dans les plus brefs délais.
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <div class="map-placeholder">
+      <span>🗺️</span>
+      <strong>12 Avenue Habib Bourguiba, Tunis 1000</strong>
+      <small>Carte interactive disponible après intégration Google Maps</small>
+    </div>
+  </div>
+
+  <footer id="contact-footer" class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">Escales <em>Tunisiennes</em></span>
+        <p>Votre partenaire de voyage de confiance depuis 2008. Spécialiste du tourisme en Tunisie.</p>
+        <div class="social-links"><a href="#">FB</a><a href="#">IG</a><a href="#">TW</a></div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">Notre Agence</a></li>
+          <li><a href="products.html">Nos Voyages</a></li>
+          <li><a href="order.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>📍 12 Avenue Habib Bourguiba, Tunis 1000</p>
+        <p>📞 +216 71 000 000</p>
+        <p>✉️ contact@escalestunisiennes.tn</p>
+        <p>⏰ Lun–Sam : 9h–18h</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Escales Tunisiennes. Tous droits réservés.</p></div>
+  </footer>
+
+  <script>
+    function sendContact() {
+      const prenom = document.getElementById('c-prenom').value.trim();
+      const email  = document.getElementById('c-email').value.trim();
+      const sujet  = document.getElementById('c-sujet').value;
+      const msg    = document.getElementById('c-message').value.trim();
+      const rgpd   = document.getElementById('c-rgpd').checked;
+
+      if (!prenom || !email || !sujet || !msg) {
+        alert('Veuillez remplir tous les champs obligatoires (*).');
+        return;
+      }
+      if (!rgpd) {
+        alert('Veuillez accepter la politique de confidentialité pour continuer.');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Veuillez entrer une adresse email valide.');
+        return;
+      }
+      document.getElementById('contact-success').style.display = 'block';
+      document.querySelector('.btn-next').disabled = true;
+    }
+  </script>
+
+</body>
+</html>

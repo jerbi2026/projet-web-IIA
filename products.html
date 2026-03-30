@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nos Voyages – Escales Tunisiennes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-arabic">&#x2766;</span>
+      <span class="logo-text">Escales <em>Tunisiennes</em></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">Notre Agence</a></li>
+      <li><a href="products.html" class="active">Nos Voyages</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li><a href="order.html">Réserver</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="testimonials.html" >Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="order.html" class="nav-cta">Réserver maintenant</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="background-image: url('src/fs9cuqwn1dnae8w67g74.webp')">
+    <div class="page-hero-content">
+      <span class="section-label">Circuits & Séjours</span>
+      <h1>Nos <em>Voyages</em></h1>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="products-intro">
+    <p class="section-label">Choisissez votre aventure</p>
+    <h2>Des circuits pensés <em>pour vous</em></h2>
+    <p>Chaque circuit est conçu pour vous faire vivre la Tunisie autrement — avec confort, authenticité et découverte. Tous nos programmes sont personnalisables selon vos dates et vos envies.</p>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="product-filter">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">Tous</button>
+    <button class="filter-btn" onclick="filterProducts('culture', this)">Culturel</button>
+    <button class="filter-btn" onclick="filterProducts('beach', this)">Balnéaire</button>
+    <button class="filter-btn" onclick="filterProducts('desert', this)">Désert</button>
+    <button class="filter-btn" onclick="filterProducts('adventure', this)">Aventure</button>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <div class="products-grid">
+
+    <!-- PRODUCT 1 – Cultural -->
+    <div class="product-card" data-cat="culture">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1553152531-b98a2fc8d3bf?w=600" alt="Circuit Culturel Tunisie" />
+      </div>
+      <div class="product-body">
+        <div class="product-tags">
+          <span class="tag culture">Culturel</span>
+          <span class="tag">7 jours</span>
+          <span class="tag">Groupe</span>
+        </div>
+        <h3>Circuit des Civilisations</h3>
+        <p>De Carthage à Dougga en passant par El Jem et Kairouan — une plongée dans 3 000 ans d'histoire. Guides experts inclus à chaque site.</p>
+        <ul style="font-size:0.82rem; color:var(--text-light); margin-bottom:1rem;">
+          <li>✓ Guide accompagnateur francophone</li>
+          <li>✓ Hébergement 4★ inclus</li>
+          <li>✓ Transports et entrées compris</li>
+        </ul>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="product-price">890 TND <small>/ personne</small></div>
+          <div class="product-meta">⏱ 7 jours · 👥 Min. 4 pers.</div>
+        </div>
+        <a href="order.html?product=culture" class="btn-primary">Réserver</a>
+      </div>
+    </div>
+
+    <!-- PRODUCT 2 – Beach -->
+    <div class="product-card" data-cat="beach">
+      <div class="product-img">
+        <img src="src/escapade.webp" alt="Séjour Balnéaire Djerba" />
+      </div>
+      <div class="product-body">
+        <div class="product-tags">
+          <span class="tag beach">Balnéaire</span>
+          <span class="tag">10 jours</span>
+          <span class="tag">Famille</span>
+        </div>
+        <h3>Escapade Bleue</h3>
+        <p>Hammamet, Sousse, Monastir et l'île de Djerba. Plages de sable blanc, mer turquoise et détente absolue pour toute la famille.</p>
+        <ul style="font-size:0.82rem; color:var(--text-light); margin-bottom:1rem;">
+          <li>✓ Hôtels front de mer sélectionnés</li>
+          <li>✓ Excursions en bateau incluses</li>
+          <li>✓ Activités enfants disponibles</li>
+        </ul>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="product-price">1 200 TND <small>/ personne</small></div>
+          <div class="product-meta">⏱ 10 jours · 👥 Min. 2 pers.</div>
+        </div>
+        <a href="order.html?product=beach" class="btn-primary">Réserver</a>
+      </div>
+    </div>
+
+    <!-- PRODUCT 3 – Desert -->
+    <div class="product-card" data-cat="desert">
+      <div class="product-img">
+        <img src="src/sahara.avif" alt="Aventure Sahara Tunisien" />
+      </div>
+      <div class="product-body">
+        <div class="product-tags">
+          <span class="tag desert">Désert</span>
+          <span class="tag">5 jours</span>
+          <span class="tag">Aventure</span>
+        </div>
+        <h3>Sahara Profond</h3>
+        <p>Tozeur, Douz, Matmata, les ksour du Sud. Traversées en 4×4, nuit dans un campement sous les étoiles, coucher de soleil sur les dunes.</p>
+        <ul style="font-size:0.82rem; color:var(--text-light); margin-bottom:1rem;">
+          <li>✓ Véhicules 4×4 et chauffeurs</li>
+          <li>✓ Nuit en campement de luxe</li>
+          <li>✓ Repas traditionnels inclus</li>
+        </ul>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="product-price">1 050 TND <small>/ personne</small></div>
+          <div class="product-meta">⏱ 5 jours · 👥 Min. 2 pers.</div>
+        </div>
+        <a href="order.html?product=desert" class="btn-primary">Réserver</a>
+      </div>
+    </div>
+
+    <!-- EXTRA PRODUCTS -->
+    <div class="product-card" data-cat="culture beach">
+      <div class="product-img">
+        <img src="src/tabarka.jpg" alt="Circuit Nord Tunisie" />
+      </div>
+      <div class="product-body">
+        <div class="product-tags">
+          <span class="tag culture">Culturel</span>
+          <span class="tag beach">Balnéaire</span>
+          <span class="tag">8 jours</span>
+        </div>
+        <h3>Grand Nord Tunisien</h3>
+        <p>Tunis, Sidi Bou Saïd, Cap Bon et Tabarka. Mélange de culture, gastronomie et paysages de corail.</p>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="product-price">950 TND <small>/ personne</small></div>
+          <div class="product-meta">⏱ 8 jours · 👥 Min. 2 pers.</div>
+        </div>
+        <a href="order.html" class="btn-primary">Réserver</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="adventure desert">
+      <div class="product-img">
+        <img src="src/zaghouan.avif" alt="Trek dans les Montagnes" />
+      </div>
+      <div class="product-body">
+        <div class="product-tags">
+          <span class="tag desert">Aventure</span>
+          <span class="tag">6 jours</span>
+          <span class="tag">Trek</span>
+        </div>
+        <h3>Trek des Djebels</h3>
+        <p>Randonnées dans les montagnes de Zaghouan et Chambi. Paysages époustouflants et villages berbères authentiques.</p>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="product-price">780 TND <small>/ personne</small></div>
+          <div class="product-meta">⏱ 6 jours · 👥 Min. 4 pers.</div>
+        </div>
+        <a href="order.html" class="btn-primary">Réserver</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-cat="culture">
+      <div class="product-img">
+        <img src="src/food.png" alt="Gastronomie Tunisie" />
+      </div>
+      <div class="product-body">
+        <div class="product-tags">
+          <span class="tag culture">Gastronomie</span>
+          <span class="tag">4 jours</span>
+          <span class="tag">Artisanat</span>
+        </div>
+        <h3>Saveurs & Médinas</h3>
+        <p>Cours de cuisine tunisienne, visite des souks de Tunis et Sfax, rencontre avec les artisans. Une immersion sensorielle totale.</p>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="product-price">650 TND <small>/ personne</small></div>
+          <div class="product-meta">⏱ 4 jours · 👥 Min. 2 pers.</div>
+        </div>
+        <a href="order.html" class="btn-primary">Réserver</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Votre voyage <em>sur mesure</em></h2>
+      <p>Vous ne trouvez pas exactement ce que vous cherchez ? Contactez-nous et créons ensemble votre circuit idéal.</p>
+      <a href="order.html" class="btn-primary btn-large">Demander un devis personnalisé</a>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">Escales <em>Tunisiennes</em></span>
+        <p>Votre partenaire de voyage de confiance depuis 2008.</p>
+        <div class="social-links"><a href="#">FB</a><a href="#">IG</a><a href="#">TW</a></div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">Notre Agence</a></li>
+          <li><a href="products.html">Nos Voyages</a></li>
+          <li><a href="order.html">Réserver</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>📍 12 Avenue Habib Bourguiba, Tunis 1000</p>
+        <p>📞 +216 71 000 000</p>
+        <p>✉️ contact@escalestunisiennes.tn</p>
+        <p>⏰ Lun–Sam : 9h–18h</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Escales Tunisiennes. Tous droits réservés.</p></div>
+  </footer>
+
+  <script>
+    function filterProducts(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.product-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat.includes(cat)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

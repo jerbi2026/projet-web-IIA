@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réservation – Escales Tunisiennes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-arabic">&#x2766;</span>
+      <span class="logo-text">Escales <em>Tunisiennes</em></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">Notre Agence</a></li>
+      <li><a href="products.html">Nos Voyages</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li><a href="order.html" class="active">Réserver</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="testimonials.html" >Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="order.html" class="nav-cta">Réserver maintenant</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=1400')">
+    <div class="page-hero-content">
+      <span class="section-label">Votre voyage commence ici</span>
+      <h1>Formulaire de <em>réservation</em></h1>
+    </div>
+  </div>
+
+  <!-- ORDER LAYOUT -->
+  <div class="order-layout">
+
+    <!-- FORM -->
+    <div class="order-form-wrap">
+
+      <!-- STEPS INDICATOR -->
+      <div class="order-steps">
+        <div class="step active" id="step-tab-1">1. Formulaire</div>
+        <div class="step" id="step-tab-2">2. Paiement</div>
+        <div class="step" id="step-tab-3">3. Confirmation</div>
+      </div>
+
+      <!-- STEP 1 : ORDER FORM -->
+      <div class="form-step active" id="step-1">
+        <h2 class="form-section-title">Informations de <em>réservation</em></h2>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Circuit souhaité</label>
+            <select id="select-circuit" onchange="updateSummary()">
+              <option value="">— Choisissez un circuit —</option>
+              <option value="Circuit des Civilisations|890">Circuit des Civilisations (Culturel) – 890 TND/pers.</option>
+              <option value="Escapade Bleue|1200">Escapade Bleue (Balnéaire) – 1 200 TND/pers.</option>
+              <option value="Sahara Profond|1050">Sahara Profond (Désert) – 1 050 TND/pers.</option>
+              <option value="Grand Nord Tunisien|950">Grand Nord Tunisien – 950 TND/pers.</option>
+              <option value="Trek des Djebels|780">Trek des Djebels – 780 TND/pers.</option>
+              <option value="Saveurs & Médinas|650">Saveurs & Médinas – 650 TND/pers.</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date de départ souhaitée</label>
+            <input type="date" id="date-depart" onchange="updateSummary()" min="" />
+          </div>
+          <div class="form-group">
+            <label>Nombre de participants</label>
+            <select id="nb-participants" onchange="updateSummary()">
+              <option value="1">1 personne</option>
+              <option value="2" selected>2 personnes</option>
+              <option value="3">3 personnes</option>
+              <option value="4">4 personnes</option>
+              <option value="5">5 personnes</option>
+              <option value="6">6 personnes et plus</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" id="prenom" placeholder="Votre prénom" />
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" id="nom" placeholder="Votre nom" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email" placeholder="votre@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" id="telephone" placeholder="+216 xx xxx xxx" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nationalité</label>
+            <input type="text" id="nationalite" placeholder="Ex : Française, Tunisienne…" />
+          </div>
+          <div class="form-group">
+            <label>Type d'hébergement souhaité</label>
+            <select id="hebergement">
+              <option value="3★">Hôtel 3 étoiles</option>
+              <option value="4★" selected>Hôtel 4 étoiles</option>
+              <option value="5★">Hôtel 5 étoiles</option>
+              <option value="riad">Maison d'hôtes / Riad</option>
+              <option value="camp">Campement (désert)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row full">
+          <div class="form-group">
+            <label>Demandes spéciales ou informations complémentaires</label>
+            <textarea id="demandes" placeholder="Régime alimentaire, besoins particuliers, options supplémentaires…"></textarea>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <span></span>
+          <button class="btn-next" onclick="goToStep(2)">Continuer vers le paiement →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 : PAYMENT -->
+      <div class="form-step" id="step-2">
+        <h2 class="form-section-title">Informations de <em>paiement</em></h2>
+
+        <p style="color:var(--text-light); font-size:0.88rem; margin-bottom:1.5rem;">Un acompte de 30% est requis pour confirmer votre réservation. Le solde sera réglé 15 jours avant le départ.</p>
+
+        <div style="margin-bottom:1.5rem;">
+          <label class="form-group" style="font-size:0.73rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-light); margin-bottom:0.8rem; display:block;">Mode de paiement</label>
+          <div class="payment-options">
+            <div class="pay-option selected" onclick="selectPay(this)">
+              <span class="pay-icon">💳</span>
+              <span>Carte bancaire</span>
+            </div>
+            <div class="pay-option" onclick="selectPay(this)">
+              <span class="pay-icon">🏦</span>
+              <span>Virement bancaire</span>
+            </div>
+            <div class="pay-option" onclick="selectPay(this)">
+              <span class="pay-icon">💵</span>
+              <span>Espèces en agence</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="card-fields">
+          <div class="form-row full">
+            <div class="form-group">
+              <label>Titulaire de la carte</label>
+              <input type="text" placeholder="Nom tel qu'il apparaît sur la carte" />
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="form-group">
+              <label>Numéro de carte</label>
+              <input type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date d'expiration</label>
+              <input type="text" placeholder="MM / AA" maxlength="7" />
+            </div>
+            <div class="form-group">
+              <label>Code de sécurité (CVV)</label>
+              <input type="text" placeholder="XXX" maxlength="3" />
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--cream); border-radius:var(--radius); padding:1rem 1.2rem; margin-top:1rem; font-size:0.82rem; color:var(--text-light);">
+          🔒 Vos données de paiement sont transmises de manière sécurisée et chiffrée. Nous ne conservons aucune information bancaire.
+        </div>
+
+        <div class="form-nav">
+          <button class="btn-back" onclick="goToStep(1)">← Retour</button>
+          <button class="btn-next" onclick="goToStep(3)">Confirmer ma réservation ✓</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 : CONFIRMATION -->
+      <div class="form-step" id="step-3">
+        <div class="confirm-section">
+          <div class="confirm-icon">✅</div>
+          <h2>Réservation <em>confirmée</em> !</h2>
+          <p>Merci pour votre confiance ! Votre demande de réservation a bien été enregistrée. Notre équipe vous contactera dans les <strong>24 heures</strong> pour finaliser les détails de votre voyage.</p>
+          <p style="margin-bottom:1.5rem;">Un email de confirmation vous sera envoyé à l'adresse indiquée.</p>
+
+          <div style="background:var(--cream); border-radius:var(--radius-lg); padding:2rem; max-width:420px; margin:0 auto 2rem; text-align:left;">
+            <h4 style="font-family:var(--font-display); font-weight:300; font-size:1.3rem; margin-bottom:1rem; border-bottom:1px solid var(--sand); padding-bottom:0.6rem;">Récapitulatif</h4>
+            <div class="summary-item"><span>Référence</span><span style="font-weight:700;" id="ref-number">#ET-20240001</span></div>
+            <div class="summary-item"><span>Circuit</span><span id="confirm-circuit">–</span></div>
+            <div class="summary-item"><span>Participants</span><span id="confirm-participants">–</span></div>
+            <div class="summary-item"><span>Date de départ</span><span id="confirm-date">–</span></div>
+          </div>
+
+          <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+            <a href="index.html" class="btn-outline">Retour à l'accueil</a>
+            <a href="products.html" class="btn-primary">Voir d'autres circuits</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SUMMARY SIDEBAR -->
+    <div class="order-summary-wrap" id="summary">
+      <h3>Votre sélection</h3>
+      <div id="summary-empty" style="color:rgba(255,255,255,0.5); font-size:0.85rem; font-style:italic;">Choisissez un circuit pour voir le récapitulatif.</div>
+      <div id="summary-content" style="display:none;">
+        <div class="summary-item">
+          <span>Circuit</span>
+          <span id="s-circuit">–</span>
+        </div>
+        <div class="summary-item">
+          <span>Participants</span>
+          <span id="s-participants">–</span>
+        </div>
+        <div class="summary-item">
+          <span>Date</span>
+          <span id="s-date">–</span>
+        </div>
+        <div class="summary-item">
+          <span>Prix unitaire</span>
+          <span id="s-unit">–</span>
+        </div>
+        <div class="summary-item">
+          <span>Acompte (30%)</span>
+          <span id="s-acompte" style="color:var(--sand)">–</span>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span id="s-total">–</span>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.15);">
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.5); margin-bottom:0.5rem; letter-spacing:0.12em; text-transform:uppercase;">Besoin d'aide ?</p>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.75);">📞 +216 71 000 000</p>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.75);">✉️ contact@escalestunisiennes.tn</p>
+      </div>
+
+      <div style="margin-top:1.5rem; background:rgba(255,255,255,0.08); border-radius:var(--radius); padding:1rem; font-size:0.8rem; color:rgba(255,255,255,0.65);">
+        ✓ Annulation gratuite jusqu'à 30j avant<br/>
+        ✓ Assistance 24h/24 incluse<br/>
+        ✓ Guides locaux certifiés
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">Escales <em>Tunisiennes</em></span>
+        <p>Votre partenaire de voyage de confiance depuis 2008.</p>
+        <div class="social-links"><a href="#">FB</a><a href="#">IG</a><a href="#">TW</a></div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">Notre Agence</a></li>
+          <li><a href="products.html">Nos Voyages</a></li>
+          <li><a href="order.html">Réserver</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>📍 12 Avenue Habib Bourguiba, Tunis 1000</p>
+        <p>📞 +216 71 000 000</p>
+        <p>✉️ contact@escalestunisiennes.tn</p>
+        <p>⏰ Lun–Sam : 9h–18h</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Escales Tunisiennes. Tous droits réservés.</p></div>
+  </footer>
+
+  <script>
+    // Pre-select product from URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const prod = params.get('product');
+      if (prod) {
+        const sel = document.getElementById('select-circuit');
+        for (let opt of sel.options) {
+          if (opt.value.toLowerCase().includes(prod)) { sel.value = opt.value; break; }
+        }
+      }
+      // Set min date
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('date-depart').min = today;
+      updateSummary();
+    });
+
+    function updateSummary() {
+      const circuitVal = document.getElementById('select-circuit').value;
+      const nb = parseInt(document.getElementById('nb-participants').value) || 2;
+      const date = document.getElementById('date-depart').value;
+
+      if (!circuitVal) {
+        document.getElementById('summary-empty').style.display = 'block';
+        document.getElementById('summary-content').style.display = 'none';
+        return;
+      }
+
+      const [circuitName, priceStr] = circuitVal.split('|');
+      const price = parseInt(priceStr);
+      const total = price * nb;
+      const acompte = Math.round(total * 0.3);
+
+      document.getElementById('summary-empty').style.display = 'none';
+      document.getElementById('summary-content').style.display = 'block';
+
+      document.getElementById('s-circuit').textContent = circuitName;
+      document.getElementById('s-participants').textContent = nb + ' pers.';
+      document.getElementById('s-date').textContent = date ? new Date(date).toLocaleDateString('fr-FR') : '–';
+      document.getElementById('s-unit').textContent = price.toLocaleString('fr') + ' TND';
+      document.getElementById('s-acompte').textContent = acompte.toLocaleString('fr') + ' TND';
+      document.getElementById('s-total').textContent = total.toLocaleString('fr') + ' TND';
+    }
+
+    function goToStep(n) {
+      if (n === 2) {
+        const circuit = document.getElementById('select-circuit').value;
+        if (!circuit) { alert('Veuillez choisir un circuit avant de continuer.'); return; }
+      }
+
+      [1,2,3].forEach(i => {
+        document.getElementById('step-' + i).classList.remove('active');
+        const tab = document.getElementById('step-tab-' + i);
+        tab.classList.remove('active','done');
+        if (i < n) tab.classList.add('done');
+      });
+      document.getElementById('step-' + n).classList.add('active');
+      document.getElementById('step-tab-' + n).classList.add('active');
+
+      if (n === 3) {
+        const cv = document.getElementById('select-circuit').value.split('|')[0] || '–';
+        const nb = document.getElementById('nb-participants').value;
+        const date = document.getElementById('date-depart').value;
+        document.getElementById('confirm-circuit').textContent = cv;
+        document.getElementById('confirm-participants').textContent = nb + ' personne(s)';
+        document.getElementById('confirm-date').textContent = date ? new Date(date).toLocaleDateString('fr-FR') : '–';
+        document.getElementById('ref-number').textContent = '#ET-' + Math.floor(10000 + Math.random() * 90000);
+      }
+
+      window.scrollTo({ top: 200, behavior: 'smooth' });
+    }
+
+    function selectPay(el) {
+      document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+      const isCard = el.querySelector('span:last-child').textContent === 'Carte bancaire';
+      document.getElementById('card-fields').style.display = isCard ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>

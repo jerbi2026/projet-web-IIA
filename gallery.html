@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galerie – Escales Tunisiennes</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-arabic">&#x2766;</span>
+      <span class="logo-text">Escales <em>Tunisiennes</em></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="about.html">Notre Agence</a></li>
+      <li><a href="products.html">Nos Voyages</a></li>
+      <li><a href="gallery.html" class="active">Galerie</a></li>
+      <li><a href="order.html">Réserver</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="testimonials.html" >Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="order.html" class="nav-cta">Réserver maintenant</a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="background-image: url('src/fs9cuqwn1dnae8w67g74.webp')">
+    <div class="page-hero-content">
+      <span class="section-label">En images</span>
+      <h1>Notre <em>Galerie</em></h1>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="gallery-intro">
+    <p class="section-label">Tunisie en images</p>
+    <h2>Laissez-vous <em>inspirer</em></h2>
+    <p>Découvrez la Tunisie à travers les yeux de nos voyageurs — déserts dorés, médinas colorées, plages turquoise et paysages à couper le souffle.</p>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="gallery-filter">
+    <button class="filter-btn active" onclick="filterGallery('all', this)">Toutes</button>
+    <button class="filter-btn" onclick="filterGallery('desert', this)">Désert</button>
+    <button class="filter-btn" onclick="filterGallery('medina', this)">Médinas</button>
+    <button class="filter-btn" onclick="filterGallery('mer', this)">Mer & Plages</button>
+    <button class="filter-btn" onclick="filterGallery('culture', this)">Patrimoine</button>
+  </div>
+
+  <!-- GALERIE -->
+  <div class="gallery-grid" id="gallery-grid">
+
+    <div class="gallery-item" data-cat="desert" onclick="openLightbox(0)">
+      <img src="src/sahara.avif" alt="Dunes du Sahara" loading="lazy" />
+      <div class="gallery-overlay"><span>Sahara de Douz</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="medina" onclick="openLightbox(1)">
+      <img src="https://images.unsplash.com/photo-1553152531-b98a2fc8d3bf?w=600" alt="Médina de Tunis" loading="lazy" />
+      <div class="gallery-overlay"><span>Médina de Tunis</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="mer" onclick="openLightbox(2)">
+      <img src="src/djerba.jpg" alt="Djerba" loading="lazy" />
+      <div class="gallery-overlay"><span>Île de Djerba</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="medina" onclick="openLightbox(3)">
+      <img src="src/sidi-bou-said.jpg" alt="Sidi Bou Saïd" loading="lazy" />
+      <div class="gallery-overlay"><span>Sidi Bou Saïd</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="culture" onclick="openLightbox(4)">
+      <img src="src/tabarka.jpg" alt="Tabarka" loading="lazy" />
+      <div class="gallery-overlay"><span>Tabarka & ses coraux</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="desert" onclick="openLightbox(5)">
+      <img src="src/douz.jpg" alt="Douz Sahara" loading="lazy" />
+      <div class="gallery-overlay"><span>Coucher de soleil – Douz</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="culture" onclick="openLightbox(6)">
+      <img src="src/zaghouan.avif" alt="Zaghouan" loading="lazy" />
+      <div class="gallery-overlay"><span>Montagnes de Zaghouan</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="culture" onclick="openLightbox(7)">
+      <img src="src/food.png" alt="Gastronomie tunisienne" loading="lazy" />
+      <div class="gallery-overlay"><span>Gastronomie tunisienne</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="mer" onclick="openLightbox(8)">
+      <img src="src/escapade.webp" alt="Plage Hammamet" loading="lazy" />
+      <div class="gallery-overlay"><span>Plage d'Hammamet</span></div>
+    </div>
+
+  </div>
+
+  <!-- SECTION VIDÉO -->
+  <section class="video-section">
+    <p class="section-label">En vidéo</p>
+    <h2>Tunisie, <em>vivez-la</em></h2>
+    <div class="video-grid">
+      <div class="video-thumb">
+        <img src="src/sahara.avif" alt="Vidéo Sahara" />
+        <div class="play-btn">▶</div>
+        <p>Désert & Dunes</p>
+      </div>
+      <div class="video-thumb">
+        <img src="src/sidi-bou-said.jpg" alt="Vidéo Sidi Bou Saïd" />
+        <div class="play-btn">▶</div>
+        <p>Sidi Bou Saïd</p>
+      </div>
+      <div class="video-thumb">
+        <img src="src/djerba.jpg" alt="Vidéo Djerba" />
+        <div class="play-btn">▶</div>
+        <p>Île de Djerba</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Ces images vous <em>font rêver ?</em></h2>
+      <p>Transformez ces images en souvenirs réels. Réservez votre voyage dès maintenant.</p>
+      <a href="order.html" class="btn-primary btn-large">Réserver mon voyage</a>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="changeLightbox(-1)">‹</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+    <button class="lightbox-nav lightbox-next" onclick="changeLightbox(1)">›</button>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">Escales <em>Tunisiennes</em></span>
+        <p>Votre partenaire de voyage de confiance depuis 2008.</p>
+        <div class="social-links"><a href="#">FB</a><a href="#">IG</a><a href="#">TW</a></div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">Notre Agence</a></li>
+          <li><a href="products.html">Nos Voyages</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="order.html">Réserver</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>📍 12 Avenue Habib Bourguiba, Tunis 1000</p>
+        <p>📞 +216 71 000 000</p>
+        <p>✉️ contact@escalestunisiennes.tn</p>
+        <p>⏰ Lun–Sam : 9h–18h</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Escales Tunisiennes. Tous droits réservés.</p></div>
+  </footer>
+
+  <script>
+    const items = document.querySelectorAll('.gallery-item');
+    const images = Array.from(items).map(i => ({
+      src: i.querySelector('img').src,
+      caption: i.querySelector('span').textContent
+    }));
+    let current = 0;
+
+    function filterGallery(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      items.forEach(item => {
+        item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
+      });
+    }
+
+    function openLightbox(idx) {
+      current = idx;
+      document.getElementById('lightbox-img').src = images[idx].src;
+      document.getElementById('lightbox-caption').textContent = images[idx].caption;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeLightboxOnBg(e) {
+      if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+
+    function changeLightbox(dir) {
+      current = (current + dir + images.length) % images.length;
+      document.getElementById('lightbox-img').src = images[current].src;
+      document.getElementById('lightbox-caption').textContent = images[current].caption;
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') changeLightbox(1);
+      if (e.key === 'ArrowLeft') changeLightbox(-1);
+    });
+  </script>
+
+</body>
+</html>

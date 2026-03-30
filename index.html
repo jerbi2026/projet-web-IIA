@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escales Tunisiennes – Agence de Voyage</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span class="logo-arabic">&#x2766;</span>
+      <span class="logo-text">Escales <em>Tunisiennes</em></span>
+    </div>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="about.html">Notre Agence</a></li>
+      <li><a href="products.html">Nos Voyages</a></li>
+      <li><a href="gallery.html">Galerie</a></li>
+      <li><a href="order.html">Réserver</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="testimonials.html" >Avis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="order.html" class="nav-cta">Réserver maintenant</a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tagline">Bienvenue en Tunisie</p>
+      <h1 class="hero-title">Voyages <em>d'exception</em><br/>au cœur de la Méditerranée</h1>
+      <p class="hero-sub">Découvrez les trésors cachés de la Tunisie — déserts dorés, médinas millénaires et côtes de saphir.</p>
+      <div class="hero-actions">
+        <a href="products.html" class="btn-primary">Découvrir nos circuits</a>
+        <a href="about.html" class="btn-ghost">Notre histoire</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Défiler</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <section class="stats-bar">
+    <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Années d'expertise</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">3 000+</span><span class="stat-label">Voyageurs satisfaits</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">30+</span><span class="stat-label">Destinations</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Voyages personnalisés</span></div>
+  </section>
+
+  <!-- FEATURED DESTINATIONS -->
+  <section class="section destinations">
+    <div class="section-header">
+      <p class="section-label">Nos destinations phares</p>
+      <h2>Là où la Tunisie vous <em>surprend</em></h2>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card dest-large">
+        <div class="dest-img" style="background-image:url('src/sidi-bou-said.jpg')"></div>
+        <div class="dest-info">
+          <h3>Sidi Bou Saïd</h3>
+          <p>Le village bleu-blanc suspendu au-dessus de la mer</p>
+          <a href="products.html" class="dest-link">Explorer →</a>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-img" style="background-image:url('src/douz.jpg')"></div>
+        <div class="dest-info">
+          <h3>Sahara de Douz</h3>
+          <p>L'infini des dunes d'or</p>
+          <a href="products.html" class="dest-link">Explorer →</a>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-img" style="background-image:url('src/djerba.jpg')"></div>
+        <div class="dest-info">
+          <h3>Djerba</h3>
+          <p>L'île aux mille couleurs</p>
+          <a href="products.html" class="dest-link">Explorer →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why-us">
+    <div class="why-text">
+      <p class="section-label">Pourquoi nous choisir</p>
+      <h2>Une agence à votre <em>service</em></h2>
+      <p class="why-desc">Depuis 2008, Escales Tunisiennes crée des voyages sur mesure qui respectent l'authenticité de la culture tunisienne tout en offrant un confort optimal.</p>
+      <ul class="why-list">
+        <li><span class="why-icon">✦</span> Guides locaux certifiés et passionnés</li>
+        <li><span class="why-icon">✦</span> Hébergements soigneusement sélectionnés</li>
+        <li><span class="why-icon">✦</span> Programmes 100% personnalisables</li>
+        <li><span class="why-icon">✦</span> Assistance 24h/24 pendant votre séjour</li>
+      </ul>
+      <a href="about.html" class="btn-primary">En savoir plus</a>
+    </div>
+    <div class="why-image">
+      <div class="why-img-wrap">
+        <img src="src\Le port de Bizerte.jpg" alt="Voyage Tunisie" />
+        <div class="why-badge">
+          <span class="badge-num">15</span>
+          <span class="badge-txt">ans d'excellence</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES PREVIEW -->
+  <section class="section packages">
+    <div class="section-header">
+      <p class="section-label">Nos formules voyage</p>
+      <h2>Choisissez votre <em>aventure</em></h2>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <div class="pkg-icon">🏛️</div>
+        <h3>Circuit Culturel</h3>
+        <p>Carthage, Dougga, El Jem – plongez dans l'histoire millénaire</p>
+        <span class="pkg-price">Dès 890 TND</span>
+        <a href="products.html" class="btn-outline">Voir le circuit</a>
+      </div>
+      <div class="pkg-card pkg-featured">
+        <div class="pkg-badge-top">Populaire</div>
+        <div class="pkg-icon">🌊</div>
+        <h3>Escapade Balnéaire</h3>
+        <p>Hammamet, Sousse, Djerba – plages et azur méditerranéen</p>
+        <span class="pkg-price">Dès 1 200 TND</span>
+        <a href="products.html" class="btn-primary">Voir le circuit</a>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-icon">🐪</div>
+        <h3>Aventure Saharienne</h3>
+        <p>Tozeur, Douz, Matmata – nuits sous les étoiles du désert</p>
+        <span class="pkg-price">Dès 1 050 TND</span>
+        <a href="products.html" class="btn-outline">Voir le circuit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials">
+    <div class="section-header">
+      <p class="section-label">Témoignages</p>
+      <h2>Ce que disent nos <em>voyageurs</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Un voyage inoubliable ! L'organisation était parfaite, les guides passionnants et les hôtels magnifiques. Je recommande vivement Escales Tunisiennes."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div><strong>Sophie M.</strong><br/><small>Paris, France</small></div>
+        </div>
+      </div>
+      <div class="testi-card testi-highlight">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Équipe formidable, très à l'écoute de nos besoins. Notre circuit personnalisé était exactement ce que nous espérions. La Tunisie nous a conquis !"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div><strong>Amine B.</strong><br/><small>Montréal, Canada</small></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Le désert la nuit, Sidi Bou Saïd le matin… Ce voyage m'a changé. Merci à toute l'équipe pour cette expérience magique."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">L</div>
+          <div><strong>Laura K.</strong><br/><small>Berlin, Allemagne</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Prêt à vivre votre <em>escale tunisienne</em> ?</h2>
+      <p>Contactez-nous pour un devis personnalisé, sans engagement.</p>
+      <a href="order.html" class="btn-primary btn-large">Réserver mon voyage</a>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact" class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text">Escales <em>Tunisiennes</em></div>
+        <p>Votre partenaire de voyage de confiance depuis 2008. Spécialiste du tourisme en Tunisie.</p>
+        <div class="social-links">
+          <a href="#">FB</a>
+          <a href="#">IG</a>
+          <a href="#">TW</a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="about.html">Notre Agence</a></li>
+          <li><a href="products.html">Nos Voyages</a></li>
+          <li><a href="order.html">Réserver</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>📍 12 Avenue Habib Bourguiba, Tunis 1000</p>
+        <p>📞 +216 71 000 000</p>
+        <p>✉️ contact@escalestunisiennes.tn</p>
+        <p>⏰ Lun–Sam : 9h–18h</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Escales Tunisiennes. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.querySelector('.navbar');
+    const navToggle = document.querySelector('.nav-toggle');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navbar.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!navbar.contains(event.target) && navbar.classList.contains('nav-open')) {
+        navbar.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
