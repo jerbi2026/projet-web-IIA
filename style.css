@@ -513,14 +513,7 @@ em { font-style: italic; color: var(--ocre); }
 .timeline { padding: 6rem 6%; background: var(--cream); }
 .timeline-title { text-align: center; margin-bottom: 4rem; }
 .timeline-items { position: relative; max-width: 700px; margin: 0 auto; }
-.timeline-items::before {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: var(--sand);
-}
+
 .tl-item {
   display: flex;
   gap: 2rem;
