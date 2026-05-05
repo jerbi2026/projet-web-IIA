@@ -3,6 +3,9 @@
  * Configuration et fonctions d'authentification
  */
 
+// Inclure la configuration de la base de données
+require_once __DIR__ . '/database.php';
+
 // Démarrer la session si pas déjà démarrée
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
