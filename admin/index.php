@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../auth/session_check.php';
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/database.php';
 
 // ── Stats générales ───────────────────────────────────────────
 $stats = [];

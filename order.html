@@ -354,16 +354,71 @@
       document.getElementById('step-tab-' + n).classList.add('active');
 
       if (n === 3) {
-        const cv = document.getElementById('select-circuit').value.split('|')[0] || '–';
-        const nb = document.getElementById('nb-participants').value;
-        const date = document.getElementById('date-depart').value;
-        document.getElementById('confirm-circuit').textContent = cv;
-        document.getElementById('confirm-participants').textContent = nb + ' personne(s)';
-        document.getElementById('confirm-date').textContent = date ? new Date(date).toLocaleDateString('fr-FR') : '–';
-        document.getElementById('ref-number').textContent = '#ET-' + Math.floor(10000 + Math.random() * 90000);
+        submitOrder();
       }
 
       window.scrollTo({ top: 200, behavior: 'smooth' });
+    }
+
+    async function submitOrder() {
+      const circuit = document.getElementById('select-circuit').value;
+      const [circuitNom, circuitPrix] = circuit.split('|');
+      
+      const data = {
+        prenom: document.getElementById('prenom').value.trim(),
+        nom: document.getElementById('nom').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        telephone: document.getElementById('telephone').value.trim(),
+        nationalite: document.getElementById('nationalite').value.trim(),
+        nb_participants: parseInt(document.getElementById('nb-participants').value),
+        circuit_nom: circuitNom,
+        circuit_prix: parseFloat(circuitPrix),
+        date_depart: document.getElementById('date-depart').value,
+        hebergement: document.getElementById('hebergement').value,
+        demandes: document.getElementById('demandes').value.trim(),
+        mode_paiement: document.querySelector('.pay-option.selected span:last-child').textContent || 'Non précisé'
+      };
+
+      // Validation
+      if (!data.prenom || !data.nom || !data.email || !data.circuit_nom) {
+        alert('Veuillez remplir tous les champs obligatoires.');
+        return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        alert('Veuillez entrer une adresse email valide.');
+        return false;
+      }
+
+      try {
+        const response = await fetch('api/submit_order.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Mettre à jour la confirmation avec les vraies données
+          document.getElementById('ref-number').textContent = result.ref;
+          document.getElementById('confirm-circuit').textContent = data.circuit_nom;
+          document.getElementById('confirm-participants').textContent = data.nb_participants + ' personne(s)';
+          document.getElementById('confirm-date').textContent = data.date_depart ? new Date(data.date_depart).toLocaleDateString('fr-FR') : '–';
+        } else {
+          alert('Erreur lors de la soumission: ' + (result.error || result.message));
+          return false;
+        }
+      } catch (error) {
+        alert('Erreur de connexion. Veuillez réessayer.');
+        console.error('Error:', error);
+        return false;
+      }
+
+      return true;
     }
 
     function selectPay(el) {

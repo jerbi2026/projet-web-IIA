@@ -1,14 +1,9 @@
 <?php
 
-if (session_status() === PHP_SESSION_NONE) session_start();
- 
+require_once '../config/auth.php';
+
 // Déjà connecté → rediriger vers l'admin
-if (!empty($_SESSION['admin_logged_in'])) {
-    header('Location: ../admin/index.php');
-    exit;
-}
- 
-require_once '../config/db.php';
+redirectIfLoggedIn();
  
 $error = '';
  
@@ -19,16 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($username === '' || $password === '') {
         $error = 'Veuillez remplir tous les champs.';
     } else {
-        $stmt = $pdo->prepare('SELECT id, password_hash FROM admins WHERE username = ? LIMIT 1');
-        $stmt->execute([$username]);
-        $admin = $stmt->fetch();
- 
-        if ($admin && password_verify($password, $admin['password_hash'])) {
-            session_regenerate_id(true);
-            $_SESSION['admin_logged_in'] = true;
-            $_SESSION['admin_id']        = $admin['id'];
-            $_SESSION['admin_username']  = $username;
- 
+        if (login($username, $password)) {
             $redirect = $_GET['redirect'] ?? '../admin/index.php';
             // Sécurité : ne pas rediriger vers une URL externe
             if (!str_starts_with($redirect, '/') && !str_starts_with($redirect, '../')) {

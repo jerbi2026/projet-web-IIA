@@ -284,7 +284,6 @@
 
     async function submitReview() {
       const nom    = document.getElementById('r-nom').value.trim();
-      const ville  = document.getElementById('r-origine').value.trim();
       const circuit = document.getElementById('r-circuit').value;
       const texte  = document.getElementById('r-texte').value.trim();
       const annee  = document.getElementById('r-annee').value;
@@ -297,46 +296,8 @@
         alert('Veuillez attribuer une note (1 à 5 étoiles).');
         return;
       }
-
-      const data = {
-        prenom: nom,
-        ville: ville,
-        circuit: circuit,
-        note: currentRating,
-        message: texte
-      };
-
-      try {
-        const response = await fetch('api/submit_testimonial.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          document.getElementById('review-success').style.display = 'block';
-          document.querySelector('.review-submit .btn-next').disabled = true;
-          
-          // Réinitialiser le formulaire
-          document.getElementById('r-nom').value = '';
-          document.getElementById('r-origine').value = '';
-          document.getElementById('r-circuit').value = '';
-          document.getElementById('r-texte').value = '';
-          document.getElementById('r-annee').value = '';
-          currentRating = 0;
-          const stars = document.querySelectorAll('#star-rating span');
-          stars.forEach(s => s.classList.remove('active'));
-        } else {
-          alert('Erreur lors de la soumission: ' + (result.error || result.message));
-        }
-      } catch (error) {
-        alert('Erreur de connexion. Veuillez réessayer.');
-        console.error('Error:', error);
-      }
+      document.getElementById('review-success').style.display = 'block';
+      document.querySelector('.review-submit .btn-next').disabled = true;
     }
   </script>
 

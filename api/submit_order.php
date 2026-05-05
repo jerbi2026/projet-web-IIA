@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/database.php';
 
 // ── Lecture du corps JSON ou form-data ───────────────────────
 $raw  = file_get_contents('php://input');
@@ -69,18 +69,7 @@ if ($circuit_nom) {
 }
 
 // ── Génération de la référence unique ────────────────────────
-//    Format : ET-YYYYMMDD-XXXXX  (ex: ET-20250506-83741)
-function generateRef(object $pdo): string {
-    $prefix = 'ET-' . date('Ymd') . '-';
-    do {
-        $ref  = $prefix . mt_rand(10000, 99999);
-        $stmt = $pdo->prepare('SELECT id FROM reservations WHERE ref = ?');
-        $stmt->execute([$ref]);
-    } while ($stmt->fetch());
-    return $ref;
-}
-
-$ref = generateRef($pdo);
+$ref = generateReference();
 
 // ── Insertion en base ─────────────────────────────────────────
 try {
