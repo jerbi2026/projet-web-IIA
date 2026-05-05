@@ -3,7 +3,7 @@
 require_once '../config/auth.php';
 
 // Déjà connecté → rediriger vers l'admin
-redirectIfLoggedIn();
+//redirectIfLoggedIn();
  
 $error = '';
  
