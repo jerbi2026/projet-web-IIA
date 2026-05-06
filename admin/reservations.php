@@ -3,7 +3,8 @@ require_once __DIR__ . '/../auth/session_check.php';
 require_once __DIR__ . '/../config/database.php';
 
 // ── Actions POST ──────────────────────────────────────────────
-$flash = null;
+$flash      = null;
+$emailData  = null; // données à passer à EmailJS
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -12,11 +13,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($id > 0) {
         try {
             if ($action === 'confirmer') {
+                // Récupérer les infos client AVANT la mise à jour
+                $stmt = $pdo->prepare("SELECT * FROM reservations WHERE id=?");
+                $stmt->execute([$id]);
+                $res = $stmt->fetch();
+
                 $pdo->prepare("UPDATE reservations SET statut='confirmee' WHERE id=?")->execute([$id]);
                 $flash = ['type' => 'success', 'msg' => 'Réservation confirmée avec succès.'];
+
+                if ($res) {
+                    $emailData = [
+                        'action'       => 'confirmee',
+                        'email'        => $res['email'],
+                        'prenom'       => $res['prenom'],
+                        'nom'          => $res['nom'],
+                        'ref'          => $res['ref'],
+                        'circuit_nom'  => $res['circuit_nom'] ?? '',
+                        'date_depart'  => $res['date_depart'] ? date('d/m/Y', strtotime($res['date_depart'])) : '',
+                        'nb_part'      => $res['nb_participants'],
+                        'prix_total'   => $res['prix_total'] ? number_format($res['prix_total'], 2, ',', ' ') . ' TND' : '',
+                    ];
+                }
+
             } elseif ($action === 'annuler') {
+                $stmt = $pdo->prepare("SELECT * FROM reservations WHERE id=?");
+                $stmt->execute([$id]);
+                $res = $stmt->fetch();
+
                 $pdo->prepare("UPDATE reservations SET statut='annulee' WHERE id=?")->execute([$id]);
                 $flash = ['type' => 'warning', 'msg' => 'Réservation annulée.'];
+
+                if ($res) {
+                    $emailData = [
+                        'action'       => 'annulee',
+                        'email'        => $res['email'],
+                        'prenom'       => $res['prenom'],
+                        'nom'          => $res['nom'],
+                        'ref'          => $res['ref'],
+                        'circuit_nom'  => $res['circuit_nom'] ?? '',
+                        'date_depart'  => $res['date_depart'] ? date('d/m/Y', strtotime($res['date_depart'])) : '',
+                        'nb_part'      => $res['nb_participants'],
+                        'prix_total'   => $res['prix_total'] ? number_format($res['prix_total'], 2, ',', ' ') . ' TND' : '',
+                    ];
+                }
+
             } elseif ($action === 'supprimer') {
                 $pdo->prepare("DELETE FROM reservations WHERE id=?")->execute([$id]);
                 $flash = ['type' => 'danger', 'msg' => 'Réservation supprimée définitivement.'];
@@ -26,9 +66,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Redirect PRG
-    header('Location: reservations.php' . ($flash ? '?flash='.urlencode($flash['type'].':'.$flash['msg']) : ''));
-    exit;
+    // Si une action email est nécessaire, on NE redirige PAS tout de suite :
+    // on laisse PHP afficher la page avec le script EmailJS intégré.
+    // Sinon (suppression ou erreur), PRG classique.
+    if (!$emailData) {
+        header('Location: reservations.php' . ($flash ? '?flash=' . urlencode($flash['type'] . ':' . $flash['msg']) : ''));
+        exit;
+    }
+    // Pour les actions avec email : on passe $flash et $emailData à la page
+    // (pas de redirect, le JS redirigera après envoi)
 }
 
 // Flash depuis redirect
@@ -81,10 +127,6 @@ function badge_statut(string $s): string {
     };
 }
 
-function stat_count(PDO $pdo, string $s): int {
-    return (int)$pdo->prepare("SELECT COUNT(*) FROM reservations WHERE statut=?")->execute([$s])
-        ?: (int)$pdo->query("SELECT COUNT(*) FROM reservations WHERE statut='$s'")->fetchColumn();
-}
 $cnt_attente   = (int)$pdo->query("SELECT COUNT(*) FROM reservations WHERE statut='en_attente'")->fetchColumn();
 $cnt_confirmee = (int)$pdo->query("SELECT COUNT(*) FROM reservations WHERE statut='confirmee'")->fetchColumn();
 $cnt_annulee   = (int)$pdo->query("SELECT COUNT(*) FROM reservations WHERE statut='annulee'")->fetchColumn();
@@ -149,6 +191,23 @@ $cnt_temo_att  = (int)$pdo->query("SELECT COUNT(*) FROM temoignages WHERE approu
       <h1>Gestion des réservations</h1>
       <p><?= $total ?> réservation<?= $total > 1 ? 's' : '' ?> au total</p>
     </div>
+
+    <!-- Overlay d'envoi d'email (visible uniquement pendant l'envoi) -->
+    <?php if($emailData): ?>
+    <div id="email-overlay" style="
+        position:fixed;inset:0;background:rgba(0,0,0,.45);
+        display:flex;align-items:center;justify-content:center;z-index:9999">
+      <div style="background:#fff;border-radius:12px;padding:2rem 2.5rem;text-align:center;min-width:300px;box-shadow:0 8px 32px rgba(0,0,0,.25)">
+        <div id="overlay-icon" style="font-size:2.5rem;margin-bottom:.6rem">📧</div>
+        <div id="overlay-msg" style="font-size:1rem;color:#444">Envoi de la notification au client…</div>
+        <div style="margin-top:1rem">
+          <div style="width:100%;height:4px;background:#eee;border-radius:2px;overflow:hidden">
+            <div id="overlay-bar" style="height:100%;width:0;background:#c8973a;transition:width .4s ease;border-radius:2px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php endif; ?>
 
     <?php if($flash): ?>
     <div class="alert alert-<?= $flash['type'] ?>">
@@ -286,6 +345,60 @@ $cnt_temo_att  = (int)$pdo->query("SELECT COUNT(*) FROM temoignages WHERE approu
     </div>
   </div>
 </div>
+
+<!-- ══ EMAILJS ════════════════════════════════════════════════ -->
+<?php if($emailData): ?>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+(function() {
+  emailjs.init('iQPAvdMoj37X1rb-t');
+
+  const data   = <?= json_encode($emailData, JSON_UNESCAPED_UNICODE) ?>;
+  const bar    = document.getElementById('overlay-bar');
+  const icon   = document.getElementById('overlay-icon');
+  const msgEl  = document.getElementById('overlay-msg');
+
+  // Barre de progression visuelle
+  let progress = 0;
+  const tick = setInterval(() => {
+    progress = Math.min(progress + 3, 85);
+    bar.style.width = progress + '%';
+  }, 80);
+
+  // Paramètres envoyés au template EmailJS
+  const templateParams = {
+    destination : data.email,
+    message     : data.action === 'confirmee'
+      ? `Bonjour ${data.prenom},\n\nVotre réservation ${data.ref} pour le circuit "${data.circuit_nom}" (départ le ${data.date_depart}, ${data.nb_part} participant(s)) a été confirmée ✅.\nMontant total : ${data.prix_total}.\n\nNotre équipe vous contactera prochainement pour finaliser les détails.\n\nÀ très bientôt,\nEscales Tunisiennes`
+      : `Bonjour ${data.prenom},\n\nNous vous informons que votre réservation ${data.ref} pour le circuit "${data.circuit_nom}" (départ le ${data.date_depart}) a été annulée ✗.\n\nN'hésitez pas à nous contacter pour plus d'informations ou pour effectuer une nouvelle réservation.\n\nCordialement,\nEscales Tunisiennes`,
+  };
+
+  emailjs.send('service_7c8j1b9', 'template_57if6vg', templateParams)
+    .then(() => {
+      clearInterval(tick);
+      bar.style.width    = '100%';
+      icon.textContent   = data.action === 'confirmee' ? '✅' : '❌';
+      msgEl.textContent  = 'Email envoyé avec succès au client.';
+      // Redirection après 1.2 s
+      setTimeout(() => {
+        window.location.href = 'reservations.php?flash=<?= urlencode($flash['type'].':'.$flash['msg']) ?>';
+      }, 1200);
+    })
+    .catch((err) => {
+      clearInterval(tick);
+      icon.textContent  = '⚠️';
+      msgEl.innerHTML   = 'Impossible d\'envoyer l\'email (<small>' + JSON.stringify(err) + '</small>).<br>Redirection dans 3 secondes…';
+      bar.style.background = '#e74c3c';
+      bar.style.width      = '100%';
+      console.error('EmailJS error:', err);
+      // On redirige quand même
+      setTimeout(() => {
+        window.location.href = 'reservations.php?flash=<?= urlencode($flash['type'].':'.$flash['msg']) ?>';
+      }, 3000);
+    });
+})();
+</script>
+<?php endif; ?>
 
 </body>
 </html>
